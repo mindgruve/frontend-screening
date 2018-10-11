@@ -1,1 +1,2 @@
-# frontend-screening
+# Mindgruve Frontend Screening
+This repo contains (or will contain) various frontend files that will be meant to serve as a technical walkthrough for applicants.  The scripts should be well-written and straightforward to test for comprehension and abilities in different areas of expertise.
