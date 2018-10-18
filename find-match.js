@@ -7,7 +7,7 @@
     const suggestionBox = document.getElementById('suggestion');
 
     function MatchFinder(element, box) {
-        if (element) {
+        if (element && box) {
             this.element = element;
             this.suggestionBox = box;
 
