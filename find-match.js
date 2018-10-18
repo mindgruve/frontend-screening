@@ -10,7 +10,7 @@
         if (element) {
             this.element = element;
             this.suggestionBox = box;
-            this.currentSuggestion = '';
+
             this.init();
         }
     }
@@ -80,7 +80,7 @@
             // regex matches, update suggestion box
             if (matchString) {
                 noMatchFound = false;
-                this.currentSuggestion = this.suggestionBox.innerText = term;
+                this.suggestionBox.innerText = term;
 
                 // we've found a match, so break the loop
                 break;
@@ -94,7 +94,6 @@
     };
 
     MatchFinder.prototype.clearSuggestionBox = function() {
-        this.currentSuggestion = '';
         this.suggestionBox.innerText = '';
     };
 
