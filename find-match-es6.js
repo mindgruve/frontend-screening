@@ -26,6 +26,11 @@ class MatchFinder {
      * @param {string} value - the string of user input
      */
     processInput(value) {
+        if (!value) {
+            this.clearSuggestionBox();
+            return;
+        }
+
         this.getList().then( (terms) => {
             this.updateSuggestion(value, terms);
         }).catch((error) => {
@@ -57,38 +62,24 @@ class MatchFinder {
      * @param termsList {array} - array of terms return by the dictionary
      */
     updateSuggestion(value, termsList) {
-        // if input is empty, clear out the suggestion box and exit
-        if (!value) {
-            this.clearSuggestionBox();
-            return;
-        }
+        let matchFound = false;
 
-        // setting a variable to check against later
-        let noMatchFound = true;
-
-        // declare regex outside of loop for performance gain
-        // testing from beginning of string to match our input value
         const stringRegExp = new RegExp('^' + value, 'i');
 
         // loop through list of terms
         for (let i = 0; i < termsList.length; i++) {
             const term = termsList[i];
 
-            // test if input string matches a term
             const matchString = stringRegExp.test(term);
 
-            // regex matches, update suggestion box
             if (matchString) {
-                noMatchFound = false;
+                matchFound = true;
                 this.suggestionBox.innerText = term;
-
-                // we've found a match, so break the loop
                 break;
             }
         }
 
-        // if no results, clear out the suggestion box
-        if (noMatchFound) {
+        if (!matchFound) {
             this.clearSuggestionBox();
         }
     }
